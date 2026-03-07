@@ -1,6 +1,10 @@
 import customtkinter as ctk  # подключаем модуль customtkinter (необходимо установить: pip install customtkinter)
 
 # здесь объявляются функции-хендлеры и обычные функции
+def press_button():
+    text = entry.get()
+    entry.delete(0, "end")
+    label.configure(text=f"Привет, {text}!")
 
 # задаём цветовое оформление всего приложения
 ctk.set_appearance_mode("dark")  # также можно "light"
@@ -12,9 +16,6 @@ root.geometry("500x500")  # устанавливаем размеры окна
 my_font = ctk.CTkFont(size=20)  # задаём шрифт, потом будем применять его к виджетам
 
 # здесь создаются виджеты: настраивается их внешний вид и привязка к хендлера
-
-
-
 label = ctk.CTkLabel(master=root)
 label.configure(
     text="Привет, Аноним!",
@@ -38,11 +39,12 @@ button.configure(  # настройка её внешнего вида
     fg_color="#00D66C",  # цвет тела кнопки
     hover_color="#00BA5F",  # цвет тела кнопки при наведении курсора (лучше брать более тёмный оттенок)
 )
+button.configure(command=press_button)
 # здесь объявляются глобальные переменные: флаги, коллекции для хранения множества данных/виджетов
 
 # здесь располагаются виджеты в окне приложения так, как они должны отображаться на старте
 label.pack(pady=50)
-entry.pack(pady=50)
+entry.pack(pady=80)
 button.pack(pady=50)
 
 root.mainloop()  # запускаем главный цикл программы
