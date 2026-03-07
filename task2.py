@@ -13,7 +13,7 @@ ctk.set_appearance_mode("dark")  # также можно "light"
 ctk.set_default_color_theme("green")  # также можно: "blue", "dark-blue"
 
 root = ctk.CTk()  # создаём окно и привязываем его к переменной root
-root.title("Задание №1")  # устанавливаем заголовок окна
+root.title("Задание №2")  # устанавливаем заголовок окна
 root.geometry("500x500")  # устанавливаем размеры окна
 my_font = ctk.CTkFont(size=20)  # задаём шрифт, потом будем применять его к виджетам
 
