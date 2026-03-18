@@ -1,5 +1,6 @@
 import customtkinter as ctk  # подключаем модуль customtkinter (необходимо установить: pip install customtkinter)
 
+
 # здесь объявляются функции-хендлеры и обычные функции
 def switch_choice():
     value = var_switch.get()
@@ -10,10 +11,18 @@ def switch_choice():
         ctk.set_appearance_mode("dark")
         switch.configure(text="Тёмная тема", font=my_font)
 
-def slider_choice():
-    value = var_slider.get()
+
+def slider_choice(value):
     if value == 1:
-        
+        slider.configure(button_color="red", button_hover_color="red")
+        label.configure(text="красный ползунок", font=my_font)
+    if value == 2:
+        slider.configure(button_color="green", button_hover_color="green")
+        label.configure(text="зелёный ползунок", font=my_font)
+    if value == 3:
+        slider.configure(button_color="blue", button_hover_color="blue")
+        label.configure(text="синий ползунок", font=my_font)
+
 
 # задаём цветовое оформление всего приложения
 ctk.set_appearance_mode("dark")  # также можно "light"
@@ -38,6 +47,7 @@ slider = ctk.CTkSlider(
     orientation="horizontal",
     number_of_steps=2,  # количество отделений
     height=20,
+    variable=var_slider,
     button_color="red",
     button_hover_color="red"
 )
@@ -45,11 +55,9 @@ slider.set(0)
 label = ctk.CTkLabel(master=root, text="красный ползунок", font=my_font)
 slider.configure(command=slider_choice)
 
-
 # здесь располагаются виджеты в окне приложения так, как они должны отображаться на старте
 switch.pack(pady=50)
 slider.pack(pady=(200, 10))
 label.pack(pady=(10, 10))
-
 
 root.mainloop()  # запускаем главный цикл программы
