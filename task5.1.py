@@ -47,7 +47,7 @@ textbox1 = ctk.CTkTextbox(master=root)
 textbox1.configure(font=my_font, width=400)
 
 textbox2 = ctk.CTkTextbox(master=root)
-textbox2.configure(font=my_font, height=250)
+textbox2.configure(font=my_font, width=750)
 
 button = ctk.CTkButton(master=root)  # создание кнопки и её привязка к окну root
 button.configure(  # настройка её внешнего вида
@@ -74,7 +74,8 @@ for i in range(columns):
 combobox1.grid(row=0, column=0)
 combobox2.grid(row=1, column=0)
 combobox3.grid(row=2, column=0)
-textbox1.grid(row=0, column=1, rowspan=3)
-button.grid(row=2, column=1, rowspan=3)
+textbox1.grid(row=0, column=1, rowspan=2)
+button.grid(row=2, column=1, rowspan=2)
+textbox2.grid(row=4, column=0, columnspan=3)
 
 root.mainloop()  # запускаем главный цикл программы
