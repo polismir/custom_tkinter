@@ -3,11 +3,41 @@ from PIL import Image
 
 # здесь объявляются функции-хендлеры и обычные функции
 def handler(i, j):
-    global flag_player
-    if flag_player == 1:
-        matrix_lbls[i][j].configure(image=image_ctk_utility1)
-    if flag_player == 0:
-        matrix_lbls[i][j].configure(image=image_ctk_utility2)
+    global flag_player, matrix_lbls, matrix, flag_game
+    if matrix[i][j] == -1 and flag_game == True:
+        if flag_player == 1:
+            matrix_lbls[i][j].configure(image=image_ctk_utility1)
+            matrix[i][j] = 1
+            flag_player = 0
+        elif flag_player == 0:
+            matrix_lbls[i][j].configure(image=image_ctk_utility2)
+            matrix[i][j] = 0
+            flag_player = 1
+        # проверка победы
+        if matrix[0][0] == matrix[0][1] == matrix[0][2] != -1:
+            print("Выиграли " + ("крестики" if matrix[0][0] == 1 else "нолики"))
+            flag_game = False
+        if matrix[1][0] == matrix[1][1] == matrix[1][2] != -1:
+            print("Выиграли " + ("крестики" if matrix[1][0] == 1 else "нолики"))
+            flag_game = False
+        if matrix[2][0] == matrix[2][1] == matrix[2][2] != -1:
+            print("Выиграли " + ("крестики" if matrix[2][0] == 1 else "нолики"))
+            flag_game = False
+        if matrix[0][0] == matrix[1][0] == matrix[2][0] != -1:
+            print("Выиграли " + ("крестики" if matrix[0][0] == 1 else "нолики"))
+            flag_game = False
+        if matrix[0][1] == matrix[1][1] == matrix[2][1] != -1:
+            print("Выиграли " + ("крестики" if matrix[0][1] == 1 else "нолики"))
+            flag_game = False
+        if matrix[0][2] == matrix[1][2] == matrix[2][2] != -1:
+            print("Выиграли " + ("крестики" if matrix[0][2] == 1 else "нолики"))
+            flag_game = False
+        if matrix[0][0] == matrix[1][1] == matrix[2][2] != -1:
+            print("Выиграли " + ("крестики" if matrix[0][0] == 1 else "нолики"))
+            flag_game = False
+        if matrix[0][2] == matrix[1][1] == matrix[2][0] != -1:
+            print("Выиграли " + ("крестики" if matrix[0][2] == 1 else "нолики"))
+            flag_game = False
 
 
 # задаём цветовое оформление всего приложения
@@ -26,6 +56,13 @@ image_object2 = Image.open("images/zero.png")
 image_ctk_utility2 = ctk.CTkImage(dark_image=image_object2, size=(100, 100))
 image_object3 = Image.open("images/white_background.png")
 image_ctk_utility3 = ctk.CTkImage(dark_image=image_object3, size=(100, 100))
+
+label = ctk.CTkLabel(master=root)
+label.configure(
+    text="",
+    font=my_font,
+    text_color="white"
+)
 
 # рамка frame
 frame = ctk.CTkFrame(master=root)
@@ -72,6 +109,12 @@ for i in range(3):
         lbl_ij.grid(row=i, column=j, padx=5, pady=5)
 
 flag_player = 1 # 1 - крестик, 0 - нолик
+flag_game = True
 # здесь располагаются виджеты в окне приложения так, как они должны отображаться на старте
+matrix = [
+    [-1, -1, -1],
+    [-1, -1, -1],
+    [-1, -1, -1]
+] # -1 - пустая клетка
 
 root.mainloop()
