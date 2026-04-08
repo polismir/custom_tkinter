@@ -38,7 +38,7 @@ def handler(i, j):
         if matrix[0][2] == matrix[1][1] == matrix[2][0] != -1:
             label.configure(text="Выиграли " + ("крестики" if matrix[0][2] == 1 else "нолики"))
             flag_game = False
-        if (matrix[0][0] != -1 and matrix[0][1] != -1 and matrix[0][2] != -1 and matrix[1][0] != -1
+        elif (matrix[0][0] != -1 and matrix[0][1] != -1 and matrix[0][2] != -1 and matrix[1][0] != -1
                 and matrix[1][1] != -1 and matrix[1][2] != -1 and matrix[2][0] != -1 and matrix[2][1] != -1
                 and matrix[2][2] != -1):
             label.configure(text="Выиграла ничья")
