@@ -15,28 +15,33 @@ def handler(i, j):
             flag_player = 1
         # проверка победы
         if matrix[0][0] == matrix[0][1] == matrix[0][2] != -1:
-            print("Выиграли " + ("крестики" if matrix[0][0] == 1 else "нолики"))
+            label.configure(text="Выиграли " + ("крестики" if matrix[0][0] == 1 else "нолики"))
             flag_game = False
         if matrix[1][0] == matrix[1][1] == matrix[1][2] != -1:
-            print("Выиграли " + ("крестики" if matrix[1][0] == 1 else "нолики"))
+            label.configure(text="Выиграли " + ("крестики" if matrix[1][0] == 1 else "нолики"))
             flag_game = False
         if matrix[2][0] == matrix[2][1] == matrix[2][2] != -1:
-            print("Выиграли " + ("крестики" if matrix[2][0] == 1 else "нолики"))
+            label.configure(text="Выиграли " + ("крестики" if matrix[2][0] == 1 else "нолики"))
             flag_game = False
         if matrix[0][0] == matrix[1][0] == matrix[2][0] != -1:
-            print("Выиграли " + ("крестики" if matrix[0][0] == 1 else "нолики"))
+            label.configure(text="Выиграли " + ("крестики" if matrix[0][0] == 1 else "нолики"))
             flag_game = False
         if matrix[0][1] == matrix[1][1] == matrix[2][1] != -1:
-            print("Выиграли " + ("крестики" if matrix[0][1] == 1 else "нолики"))
+            label.configure(text="Выиграли " + ("крестики" if matrix[0][1] == 1 else "нолики"))
             flag_game = False
         if matrix[0][2] == matrix[1][2] == matrix[2][2] != -1:
-            print("Выиграли " + ("крестики" if matrix[0][2] == 1 else "нолики"))
+            label.configure(text="Выиграли " + ("крестики" if matrix[0][2] == 1 else "нолики"))
             flag_game = False
         if matrix[0][0] == matrix[1][1] == matrix[2][2] != -1:
-            print("Выиграли " + ("крестики" if matrix[0][0] == 1 else "нолики"))
+            label.configure(text="Выиграли " + ("крестики" if matrix[0][0] == 1 else "нолики"))
             flag_game = False
         if matrix[0][2] == matrix[1][1] == matrix[2][0] != -1:
-            print("Выиграли " + ("крестики" if matrix[0][2] == 1 else "нолики"))
+            label.configure(text="Выиграли " + ("крестики" if matrix[0][2] == 1 else "нолики"))
+            flag_game = False
+        if (matrix[0][0] != -1 and matrix[0][1] != -1 and matrix[0][2] != -1 and matrix[1][0] != -1
+                and matrix[1][1] != -1 and matrix[1][2] != -1 and matrix[2][0] != -1 and matrix[2][1] != -1
+                and matrix[2][2] != -1):
+            label.configure(text="Выиграла ничья")
             flag_game = False
 
 
@@ -47,7 +52,7 @@ ctk.set_default_color_theme("green")
 root = ctk.CTk()
 root.title("Приложение")
 root.geometry("500x500")
-my_font = ctk.CTkFont(size=20)
+my_font = ctk.CTkFont(size=25)
 
 # здесь создаются виджеты: настраивается их внешний вид и привязка к хендлера
 image_object1 = Image.open("images/cross.png")
@@ -90,12 +95,13 @@ for i in range(3):
     matrix_lbls.append(tmp_lst)
 
 # внешняя сетка для окна root:
-rows, columns = 3, 3
+rows, columns = 2, 1
 for i in range(rows):
     root.rowconfigure(index=i, weight=1)
 for i in range(columns):
     root.columnconfigure(index=i, weight=1)
-frame.grid(row=1, column=1)
+frame.grid(row=0, column=0)
+label.grid(row=1, column=0)
 
 # внутренняя сетка для рамки frame:
 rows, columns = 3, 3
